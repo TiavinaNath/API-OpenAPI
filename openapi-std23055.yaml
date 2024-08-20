@@ -1,0 +1,34 @@
+openapi: 3.0.3
+
+info:
+  title: STD23055 - TD1
+  version: 1.0.0
+  description: This API provides access to customer data.
+  contact:
+    name: API Support
+    email: hei.tiavina.3@gmail.com
+
+servers:
+  - url: https://localhost.std23055.com
+
+paths:
+  /customers:
+    get:
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Customer"
+
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        name:
+          type: string
+        age:
+          type: integer
