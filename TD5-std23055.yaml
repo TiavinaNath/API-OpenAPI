@@ -1,0 +1,59 @@
+openapi: 3.0.3
+info:
+  title: STD23055 - TD5
+  version: '1.0.5'
+servers:
+  - url: https://localhost.std23055.com
+paths:
+  /customers:
+    put:
+      summary: Complete update of a Customer
+      requestBody:
+        description: Provide all Customer properties to perform a full update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Customer'
+        required: true
+      responses:
+        200:
+          description: Customer information successfully updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+    patch:
+      summary: Update specific Customer properties
+      requestBody:
+        description: Provide only the properties that need to be updated. The ID is required to identify the Customer.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  required: true
+                name:
+                  type: string
+                age:
+                  type: integer
+        required: true
+      responses:
+        200:
+          description: Customer details partially updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Customer'
+components:
+  schemas:
+    Customer:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        age:
+          type: integer
